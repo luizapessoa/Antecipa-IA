@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Antecipa IA</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h1>Antecipa IA</h1>
+
+        <button class="nav-btn active"
+            onclick="mostrarTela('dashboard', this)">
+            Dashboard
+        </button>
+
+        <button class="nav-btn"
+            onclick="mostrarTela('contratosTela', this)">
+            Contratos
+        </button>
+
+        <button class="nav-btn"
+            onclick="mostrarTela('alertasTela', this)">
+            Alertas
+        </button>
+
+        <button class="nav-btn"
+            onclick="mostrarTela('assessoriasTela', this)">
+            Assessorias
+        </button>
+
+    </aside>
+
+    <!-- CONTEÚDO -->
+
+    <main class="content">
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard" class="tela">
+
+            <h2>Dashboard</h2>
+
+            <div class="kpis">
+
+                <div class="card"> 
+    <h3>Contratos</h3>
+    <p id="contratos">-</p>
+    <p>Probabilidade de Risco: <span id="probabilidade-risco">-</span>%</p>
+</div>
+
+                <div class="card">
+                    <h3>Valor Inadimplente</h3>
+                    <p id="valor">-</p>
+                </div>
+
+                <div class="card">
+                    <h3>Taxa Recuperação</h3>
+                    <p id="taxa">-</p>
+                </div>
+
+                <div class="card">
+                    <h3>Saldo Devedor</h3>
+                    <p id="saldo">-</p>
+                </div>
+
+            </div>
+
+            <div class="grid">
+
+                <div class="chart-card">
+                    <canvas id="statusChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <canvas id="regiaoChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <canvas id="riscoChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+    <canvas id="atrasoChart"></canvas>
+</div>
+
+            </div>
+
+        </section>
+
+        <!-- CONTRATOS -->
+
+        <section id="contratosTela" class="tela hidden">
+
+    <h2>Contratos</h2>
+
+    <input
+        type="text"
+        id="buscaContrato"
+        placeholder="Buscar contrato, assessoria, região ou risco..."
+    >
+
+    <p id="contadorContratos"></p>
+
+    <table id="tabelaContratos">
+
+        <thead>
+            <tr>
+                <th>Contrato</th>
+                <th>Assessoria</th>
+                <th>Região</th>
+                <th>Valor</th>
+                <th>Atraso</th>
+                <th>Status</th>
+                <th>Risco</th>
+            </tr>
+        </thead>
+
+        <tbody></tbody>
+
+    </table>
+
+    <div class="paginacao">
+
+        <button id="btnAnterior">
+            ◀ Anterior
+        </button>
+
+        <span id="paginaAtual"></span>
+
+        <button id="btnProxima">
+            Próxima ▶
+        </button>
+
+    </div>
+
+</section>
+
+        <!-- ALERTAS -->
+
+        <section id="alertasTela" class="tela hidden">
+
+    <h2>Alertas Críticos</h2>
+
+    <p id="contadorAlertas"></p>
+
+    <div id="alertasContainer"></div>
+
+    <div class="paginacao">
+
+        <button id="btnAlertaAnterior">
+            ◀ Anterior
+        </button>
+
+        <span id="paginaAlertaAtual"></span>
+
+        <button id="btnAlertaProxima">
+            Próxima ▶
+        </button>
+
+    </div>
+
+</section>
+
+        <!-- ASSESSORIAS -->
+
+        <section id="assessoriasTela" class="tela hidden">
+
+            <h2>Assessorias</h2>
+
+            <div class="kpis">
+
+                <div class="card">
+                    <h3>Total</h3>
+                    <p id="totalAssessorias">-</p>
+                </div>
+
+                <div class="card">
+                    <h3>Melhor Taxa</h3>
+                    <p id="melhorTaxa">-</p>
+                </div>
+
+                <div class="card">
+                    <h3>Pior Taxa</h3>
+                    <p id="piorTaxa">-</p>
+                </div>
+
+                <div class="card">
+                    <h3>Média Geral</h3>
+                    <p id="mediaAssessoria">-</p>
+                </div>
+
+            </div>
+
+            <div class="chart-card">
+                <canvas id="rankingAssessoria"></canvas>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
